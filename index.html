@@ -1,0 +1,47 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <title>Jacksonville 2600</title>
+</head>
+<body style="background-image: url(img/kali.png);">
+<div id="icons">
+<div id="show" class="icons">
+<input type="image" src="img/terminal.png" /><br>
+<span class="caption">terminal</span>
+</div>
+</div>
+  <div id="draggable" class="terminal-window">
+    <header class="title-bar">  
+	<div>
+	<div id ="hide" class="title-button" style="background-color:#ED4337; color:2f4f4f;">X</div>
+        <b>Jacksonville@2600:~</b> 
+      </div>
+    </header>
+			<pre id="ascii" align="center">     ____.   _____   ____  ___________   _______________   _______   
+    |    |  /  _  \  \   \/  /\_____  \ /  _____/\   _  \  \   _  \  
+    |    | /  /_\  \  \     /  /  ____//   __  \ /  /_\  \ /  /_\  \ 
+/\__|    |/    |    \ /     \ /       \\  |__\  \\  \_/   \\  \_/   \
+\________|\____|__  //___/\  \\_______ \\_____  / \_____  / \_____  /
+                  \/       \_/        \/      \/        \/        \/ 
+        ________   _________  ________ _______      _____            
+        \______ \  \_   ___ \/   __   \\   _  \    /  |  |           
+         |    |  \ /    \  \/\____    //  /_\  \  /   |  |_          
+         |    `   \\     \____  /    / \  \_/   \/    ^   /          
+        /_______  / \______  / /____/   \_____  /\____   |           
+                \/         \/                 \/      |__|           </pre>
+	<p> Welcome to Jacksonville's information security community!<br>To learn more about us, please type 'help'<br> Website Under Development</p>	
+	<script>
+		$(".terminal").scrollTop($(".terminal")[0].scrollHeight);
+	</script>
+<textarea id="terminal" class="terminal-content" unselectable="on" rows="10" spellcheck=false autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+  </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
