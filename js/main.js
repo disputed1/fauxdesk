@@ -1,113 +1,69 @@
-// TODO - Handle when lines have to wrap
-body {
-  font-size: 16px;
-  background-image: kali.png no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+(function () {
+  var commandStart = 'Jacksonville@2600:~ '
+  // Find a way to disable the ability to delete the login line stuff
 
-.terminal-window {
-  background-color: #000;
-  color: #fff;
-  border: outset;
-  border-style: solid;
-  border-color: #d3d3d3;
-  font-family: -apple-system, "BlinkMacSystemFont", sans-serif;
-  cursor: text;
-  position:relative;
-  width: 60%;
-  top: 5%;
-  left: 20%;
-}
 
-.title-bar {
-  background: #e0e0e0;
-  background: linear-gradient(#f0f0f0 , #d3d3d3);
-  border-top-left-radius: .3em;
-  border-top-right-radius: .3em;
-  color: #000;
-  font-family: -apple-system, "BlinkMacSystemFont", sans-serif;
-  overflow: hidden;
-  cursor: move;
-  padding: .4em;
-  margin: -.2em -.1em 0em -.1em;
-}
-/*------------- Enviromental Variables ------------ */
+  // Add the block character as the text cursor
 
-p {
-	font-family:monospace;
-}
+  // Write the logic to verify correct commands
+  var terminal = document.querySelector('textarea.terminal-content');
+  terminal.value = commandStart;
+  
+  // terminal.addEventListener('keyup', function(e) {
+  terminal.addEventListener('keydown', function(e) {
+    var terminalContent = terminal.value;
+    // console.dir(e);
 
-input {
-  width:80%;
-  length:80%;  
-  margin: 0px 3px;
-  border: none;
-  overflow: auto;
-  outline: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
+    if(e.keyCode === 13) { // enter
+      e.preventDefault();
+      terminal.value = terminalContent + '\n' + commandStart;
+    }
+    if(e.keyCode === 67 && e.ctrlKey) { // ctrl+c
+      // don't process input, but create new line
+      // print ^C
+    }
+    if(e.keyCode === 8) { // backspace
+      e.preventDefault();
 
-textarea {
-    border: none;
-    overflow: auto;
-    outline: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
+      // Split the window on returns
+      var terminalLines = terminalContent.split('\n');
 
-/* ------------------------------------------------ */
+      // Look at the last split
+      var lastSplit = terminalLines[terminalLines.length - 1];
+      if (lastSplit.length > commandStart.length) {
+        terminal.value = terminalContent.substring(0, terminalContent.length - 1);
+      }
+    }
+  }, false);
 
-/*------------- Icon Bullshit --------------------- */
+  // v2 Allow partial correct solutions
 
-.icons {
-  color:#fff;
-  font-family:monospace;
-  max-width:60px;
-  margin-left:2%;
-}
+  // Minify JS to obscure answers
+})();
 
-.caption {
-  color: #fff;
-  font-family: monospace;
-  margin: auto;
-  cursor: pointer;
-}
-	
-.icons:hover{
-background: blue; /* make this whatever you want */
-}
+// focus textarea on div click 
+$('div').click(function() {
+    $(this).find('textarea').focus();
+});
 
-/* ------------------------------------------------ */
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $(".terminal-window").hide();
+    });
+    $("#show").click(function(){
+        $(".terminal-window").show();
+    });
+});
 
-.title-bar div {
-  text-align: center;
-/*  cursor:move;
-  position:relative; /* important (all position that's not `static`) */
-}
-
-.title-button {
-  border: 1px solid;
-  border-radius: 50%;
-  width: 1em;
-  height: 1em;
-  float: right;
-  margin: .1875em;
-  cursor:pointer;
-}
-
-.terminal-content {
-  border: hidden;
-  padding: 0px 0px 0px 0px;
-  background-color: #000;
-  font-family: monospace;
-  width: 100%;
-  color: #fff;
-  font-size: 1em;
-}
-
+//make div draggable
+  $( function() {
+    $( "#draggable" ).draggable();
+  } );
+   $( function() {
+    $( "#icons" ).draggable();
+  } );
+  
+var objDiv = document.getElementById(".terminal");
+objDiv.scrollTop = objDiv.scrollHeight;  
+  
+  
